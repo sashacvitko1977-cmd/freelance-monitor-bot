@@ -6,6 +6,7 @@ import html
 import logging
 
 from aiogram import Bot, Router
+from aiogram.enums import ParseMode
 from aiogram.filters import Command
 from aiogram.types import Message
 
@@ -74,4 +75,9 @@ async def last(message: Message) -> None:
 
 
 async def send_project(bot: Bot, chat_id: int, project: Project) -> None:
-    await bot.send_message(chat_id, format_project(project), disable_web_page_preview=False)
+    await bot.send_message(
+        chat_id,
+        format_project(project),
+        parse_mode=ParseMode.HTML,
+        disable_web_page_preview=False,
+    )
