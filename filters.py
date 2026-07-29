@@ -16,7 +16,9 @@ def matches(project: Project) -> bool:
         return False
     if project.price_value is not None and project.price_value < MIN_PRICE:
         return False
-    return project.price_value is not None or MIN_PRICE <= 0
+    # If the customer negotiates the price, it is not possible to prove
+    # that it is below MIN_PRICE, so keep the project eligible.
+    return True
 
 
 def parse_price(value: str) -> float | None:
